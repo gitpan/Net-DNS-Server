@@ -4,5 +4,6 @@ Makefile.PL
 MANIFEST
 Server.pm
 test.pl
-sample.pl
+sample/sample.pl
 
+META.yml                                 Module meta-data (added by MakeMaker)

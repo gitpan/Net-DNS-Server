@@ -40,3 +40,7 @@ Revision history for Perl extension Net::DNS::Server.
 
 1.45  Tue Oct  1 14:01:00 2002
 	- The rd bit is set according to the question, as it should be.
+
+1.46  Sat Dec 13  6:23:00 2003
+	- Fixed return()s as suggested by Michael Stovenour. Sample server
+	moved to its own directory, to accomodate various sample scripts.

@@ -1,3 +1,6 @@
+# This is a sample one-shot server. This server will provide a single answer
+# to an A query. Note that for a real server, you would want a loop...
+
 package Net::DNS::Method::Sample;
 use Net::DNS::Method;
 use Net::DNS;
@@ -31,6 +34,9 @@ my $server = new Net::DNS::Server ('127.0.0.1:53', [ $method ])
 
 if ($server->get_question()) {
     print " get_question succesful\n";
+
+    $server->process;
+
     if ($server->send_response()) {
 	print "send_response ok\n";
     }
@@ -41,4 +47,3 @@ if ($server->get_question()) {
 else {
     print "get_question failed\n";
 }
-

@@ -11,7 +11,7 @@ use IO::Socket::INET;
 use strict;
 use warnings;
 
-our $VERSION = '1.45';
+our $VERSION = '1.46';
 
 sub new {
     my $type = shift;
@@ -26,14 +26,14 @@ sub new {
     my $usocket = new IO::Socket::INET('LocalAddr' => $port,
 				       'Proto' => 'UDP',
 				       )
-	or return undef;
+	or return;
 
     my $tsocket = new IO::Socket::INET('LocalAddr' => $port,
 				       'Proto' => 'TCP',
 				       'Listen' => SOMAXCONN,
 				       'Reuse' => 1,
 				       )
-	or return undef;
+	or return;
 
     my $sel = new IO::Select;
     $sel->add($usocket);
@@ -85,7 +85,7 @@ sub get_question {
     if (!@{$self->{pq}}) {	# If not pending questions...
 
 	@s = $self->{sel}->can_read($tout);
-	return undef unless @s;
+	return unless @s;
 
 	foreach my $socket (@s) {	# Queue questions
 
@@ -134,7 +134,7 @@ sub process {
 
     my $rq = shift @{$self->{pq}};
 
-    return undef unless $rq;
+    return unless $rq;
     
     $self->{socket} = $rq->[0];
     $self->{qp} = $rq->[1];
@@ -181,7 +181,7 @@ sub process {
 sub send_response {
     my $self = shift;
     
-    return undef if not defined $self->{socket};
+    return if not defined $self->{socket};
 
     my $socket = $self->{socket};
     $self->{socket} = undef;
@@ -225,7 +225,7 @@ sub send_response {
 			 and $socket->socktype == SOCK_DGRAM))
 		{
 		    eval { $socket->send(pack("n", length($data))); };
-		    return undef if $@;
+		    return if $@;
 		}
 		
 		$bytes += $socket->send($data);
@@ -248,16 +248,16 @@ sub send_response {
 		    $self->{sel}->add($socket);
 		}
 		eval { $socket->send(pack("n", length($data))); };
-		return undef is $@;
+		return if $@;
 	    }
 
 	    eval { $socket->send($data); };
-	    return undef if $@;
+	    return if $@;
 	    return 1;
 	}
     }
     else {
-	return undef;
+	return;
     }
 }
 
