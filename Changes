@@ -1,0 +1,42 @@
+Revision history for Perl extension Net::DNS::Server.
+
+1.00  Wed Oct 11 10:43:15 2000
+	- original version; created by h2xs 1.20 with options
+		-Xfn Net::DNS::Server -v 1.00
+
+1.10  Mon Oct 30 20:00:00 2000
+	- Modified the recursion flags regarding recursion in the
+	default answer
+
+1.20  Web Nov  1 14:15:00 2000
+	- Added support for TCP sockets.
+	- Added ->process and modified the event loop design
+
+1.30  Fri Nov  3 15:47:00 2000
+	- Reject requests to AXFR in UDP sockets
+
+1.40  Mon Nov  6 17:56:00 2000
+	- ->process() now takes an argument.
+	- methods are invoked passing a hash.
+
+1.41  Tue Nov 21 10:14:00 2000
+	- As Michael Fuhr pointed out, TCP reads now get
+	decoded according to RFC-1035. Thanks Michael!
+
+1.42  Mon Nov 27 15:34:00 2000
+	- Original question packet is now visible to the Net::DNS::Method::*
+	methods via $arg->{query}.
+	- Do not close TCP sockets until client closes it.
+	- Added NS_SPLIT to support splitting responses into individual
+	packets for AXFR.
+
+1.43  Fri Mar 23 11:25:00 2001
+	- When receiving signals, accept() can return undef causing
+	a runtime error. This was fixed.
+
+1.44  Mon Apr 15 10:29:00 2002
+	- Wrap ->send() around eval { } to prevent errors to propagate
+	and kill the daemon
+
+1.45  Tue Oct  1 14:01:00 2002
+	- The rd bit is set according to the question, as it should be.
