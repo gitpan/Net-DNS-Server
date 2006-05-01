@@ -11,7 +11,7 @@ use IO::Socket::INET;
 use strict;
 use warnings;
 
-our $VERSION = '1.46';
+our $VERSION = '1.47';
 
 sub new {
     my $type = shift;
@@ -138,6 +138,9 @@ sub process {
     
     $self->{socket} = $rq->[0];
     $self->{qp} = $rq->[1];
+
+    # bail if we get a "response" instead of a query
+    return unless ($self->{qp}->header->qr == 0);
 
     my $to = new NetAddr::IP($self->{socket}->sockhost());
     my $to_port = $self->{socket}->sockport();
@@ -407,7 +410,7 @@ None by default.
 
 =head1 AUTHOR
 
-Luis E. Muñoz <luismunoz@cpan.org>
+Luis E. MuÃ±oz <luismunoz@cpan.org>
 
 =head1 CAVEATS
 

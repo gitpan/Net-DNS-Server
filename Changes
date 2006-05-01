@@ -43,4 +43,8 @@ Revision history for Perl extension Net::DNS::Server.
 
 1.46  Sat Dec 13  6:23:00 2003
 	- Fixed return()s as suggested by Michael Stovenour. Sample server
-	moved to its own directory, to accomodate various sample scripts.
+	  moved to its own directory, to accomodate various sample scripts.
+
+1.47  Mon May  1 11:46:10 VET 2006
+        - Added patch by Duane Wessels that prevents processing of
+	  response packets

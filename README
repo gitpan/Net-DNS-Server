@@ -2,12 +2,19 @@
 Hash: SHA1
 
 
+
+
 Net::DNS::Server
 ================
 
 This is a simple infrastructure for building "programatic" DNS
 servers. This would be a DNS server that can construct an answer based
-on a query. 
+on the received query and on a chunk of Perl code.
+
+An example where this is useful, is the scenario where very large
+network ranges need to have a generic naming based on the IP
+address. This approach wastes very little space, as the response can
+be crafted on the fly by a simple Perl expression.
 
 This module works in tandem with Net::DNS::Method.
 
@@ -31,12 +38,14 @@ This module requires these other modules and libraries:
 
    Net::DNS
    Net::DNS::Method
-   File::Find
 
-This module is currently maintained under Perl 5.6.x. While it may run
-under earlier Perls with slight modifications, support under such old
-environments might be more complicated for the author. Seriously, you
-should be thinking about upgrading. Really.
+DO YOU WANT TO THANK ME?
+
+If  you consider this  a valuable  contribution, there  is a  web page
+where you can express your gratitude. Please see
+
+        http://mipagina.cantv.net/lem/thanks-en.html (English)
+        http://mipagina.cantv.net/lem/thanks-es.html (Spanish)
 
 SECURITY CONSIDERATIONS
 
@@ -62,14 +71,12 @@ COPYRIGHT AND LICENSE
 
 This code is released under the same terms as Perl itself
 
-Copyright (C) 2002,2003 Luis E. Muñoz <luismunoz@cpan.org>
+Copyright (C) 2002,2003 Luis E. MuÃ±oz <luismunoz@cpan.org>
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.1 (Darwin)
 
-iD8DBQE+64Z4QyDWGRI/hhARAphbAKCrxJKxvdgXO9nVBmt4JjTWwaOfgQCdE/xV
-zH0NExb4Olm+ZMQs4SSg3BE=
-=9SeX
+iD8DBQFEVi+XQyDWGRI/hhARAi4jAJ9Mb293Ja9zZOOmxNFqmmMGFbBC4ACeL2l1
+TGnPKSwAPE9w0dSzhVkmwUQ=
+=G5SK
 -----END PGP SIGNATURE-----
-
-$Id: README,v 1.1 2003/06/14 20:33:30 lem Exp $
